@@ -3,6 +3,17 @@ class EntriesController < ApplicationController
   def new
   end
 
+  def index
+    @entry = Entry.all
+
+    respond_to do |format|
+      format.html 
+      format.json do
+        render :json => @entry
+      end
+    end
+  end
+
   def create
     @entry = Entry.new
     @entry["title"] = params["title"]
